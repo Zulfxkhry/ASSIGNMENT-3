@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizalman Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    body {
+    background-image: url("bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.customer-info-box,
+.order-details-box,
+.payment {
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(174, 134, 223, 0.8); 
+    border-radius: 10px; 
+
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.column {
+    display: flex;
+    align-items: center;
+}
+
+label {
+    width: 180px;
+    padding-right: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+    width: 200px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    position: relative;
+    border: 0;
+    padding: 1em 2em;
+    margin: 0 10px;
+    font-weight: 700;
+    cursor: pointer;
+    outline: .5em solid #fff;
+    outline-offset: -.3em;
+    color: #fff;
+    background-color: #333;
+    text-transform: uppercase;
+}
+
+button:hover,
+button:focus {
+    animation: shake 500ms infinite, glitch 400ms infinite steps(4);
+}
+
+@keyframes shake {
+    0% {
+    }
+
+    25% {
+        transform: translate(-.1em, -.1em);
+    }
+
+    50% {
+        transform: translate(.3em, 0);
+    }
+
+    75% {
+        transform: translate(0, .3em);
+    }
+
+    100% {
+    }
+}
+
+@keyframes glitch {
+    from {
+        box-shadow: .8em .8em rgba(240, 84, 219), -.8em -.8em rgba(84, 240, 232);
+    }
+
+    to {
+        text-shadow: .3em .2em rgba(240, 84, 219), -.3em -.2em rgba(84, 240, 232);
+    }
+}
+
+</style>
+
+
+
+<body>
+    <div class="container">
+        <h1>Rizalman Boutique Form</h1>
+        
+        <div class="customer-info-box">
+          <h2>Customer Info</h2>
+          <form>
+            <div class="row">
+              <div class="column">
+                <label for="customer-name">Customer Name :</label>
+                <input type="text" id="customer-name" name="customer-name" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="customer-address">Address : </label>
+                <input type="text" id="customer-address" name="customer-address" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="contact-number">Contact Number :</label>
+                <input type="tel" id="contact-number" name="contact-number" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <div class="order-details-box">
+          <h2>Order Details</h2>
+          <form>
+            <table>
+              <tr>
+                <th>Type of Baju</th>
+                <th>Quantity</th>
+              </tr>
+              <tr>
+                <td>
+                  <label for="type-of-baju">Baju Kebaya : </label>
+                </td>
+                <td>
+                  <input type="number" id="quantity-kebaya" name="quantity-kebaya" required>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="type-of-baju">Baju Melayu Cekak Musang : </label>
+                </td>
+                <td>
+                  <input type="number" id="quantity-melayu" name="quantity-melayu" required>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        
+        <div class="payment">
+          <h2>Payment Details</h2>
+          <form>
+            <div class="row">
+              <div class="column">
+                <label for="total-amount">Total Amount : </label>
+                <input type="text" id="total-amount" name="total-amount" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="deposit">Deposit : </label>
+                <input type="text" id="deposit" name="deposit" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="column">
+                <label for="balance">Balance : </label>
+                <input type="text" id="balance" name="balance" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        
+        <div class="button-container">
+          <button onclick="calculate()">Calculate</button>
+          <button onclick="printReceipt()">Receipt</button>
+          <button onclick="clearForm()">Clear</button>
+        </div>
+        
+    </div>
+    
+    <script>
+      function calculate() {
+        // Retrieve the quantity input values
+        var quantityKebaya = parseInt(document.getElementById('quantity-kebaya').value);
+        var quantityMelayu = parseInt(document.getElementById('quantity-melayu').value);
+        
+        // Set the price values for Baju Kebaya and Baju Melayu Cekak Musang
+        var priceKebaya = 140;
+        var priceMelayu = 150;
+        
+        // Calculate the total amount and balance based on the quantity and price values
+        var totalAmount = (quantityKebaya * priceKebaya) + (quantityMelayu * priceMelayu);
+        var deposit = parseFloat(document.getElementById('deposit').value);
+        var balance = totalAmount - deposit;
+        
+        // Set the calculated total amount and balance values in the corresponding input fields
+        document.getElementById('total-amount').value = totalAmount.toFixed(2);
+        document.getElementById('balance').value = balance.toFixed(2);
+      }
+  
+      function printReceipt() {
+        // Retrieve the customer name, address, contact number, total price, and balance
+        var customerName = document.getElementById('customer-name').value;
+        var address = document.getElementById('customer-address').value;
+        var contactNumber = document.getElementById('contact-number').value;
+        var totalPrice = parseFloat(document.getElementById('total-amount').value);
+        var balance = parseFloat(document.getElementById('balance').value);
+        
+        // Generate the receipt content
+        var receiptContent = "The Receipt\n\n";
+        receiptContent += "Customer Name: " + customerName + "\n";
+        receiptContent += "Address: " + address + "\n";
+        receiptContent += "Contact Number: " + contactNumber + "\n";
+        receiptContent += "============================= \n";
+        receiptContent += "Total Price: RM" + totalPrice.toFixed(2) + "\n";
+        receiptContent += "Balance: RM" + balance.toFixed(2) + "\n";
+        
+        // Display the receipt content in an alert box
+        alert(receiptContent);
+      }
+  
+      function clearForm() {
+        // Clear all input fields in the form
+        document.getElementById('customer-name').value = "";
+        document.getElementById('customer-address').value = "";
+        document.getElementById('contact-number').value = "";
+        document.getElementById('quantity-kebaya').value = "";
+        document.getElementById('quantity-melayu').value = "";
+        document.getElementById('total-amount').value = "";
+        document.getElementById('deposit').value = "";
+        document.getElementById('balance').value = "";
+      }
+    </script>
+</body>
+</html>
